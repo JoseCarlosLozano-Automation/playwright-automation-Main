@@ -1,23 +1,36 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { CreateEventPage } from '../../pages/CreateEventPage';
-import { FillBookingForm } from '../../pages/FillBookingForm';
-import { GetSeatsCount } from '../../pages/GetSeatsCount';
-import { UserData } from '../../test-data/userData';
+import { LoginPage } from '../../../pages/LoginPage';
+import { CreateEventPage } from '../../../pages/CreateEventPage';
+import { FillBookingForm } from '../../../pages/FillBookingForm';
+import { GetSeatsCount } from '../../../pages/GetSeatsCount';
+import { UserData } from '../../../test-data/userData';
+import {EcommerceAPIClient} from '../../../utils/EcommerceAPIClient';
 
+const user = UserData();
 const url = "https://eventhub.rahulshettyacademy.com";
+
+const loginPayload = {userEmail: user.Email[13], userPassword: user.Password};
+const orderPayload = {orders: [{country: "Mexico", productOrderedId: "6960eac0c941646b7a8b3e68"}]};
+
+let response;
+
+test.beforeAll( async () => {
+    const apiContext = await request.newContext();
+    const apiUtils = new EcommerceAPIClient(apiContext, loginPayload);
+    response = await apiUtils.createOrder(orderPayload);
+});
+
 
 test('Full creation, booking and valiation of an event event - E2E', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const createEvent = new CreateEventPage(page);
     const fillBooking = new FillBookingForm(page);
     const getSeats = new GetSeatsCount(page);
-    const user = UserData();
 
     await page.goto(url);
 
     // Log in
-    await loginPage.login(user.Email[0], user.Password);
+    await loginPage.login(user.Email[13], user.Password);
     await expect(page.locator('span:has-text("Browse Events")')).toBeVisible();
 
     // Create an event
@@ -36,7 +49,7 @@ test('Full creation, booking and valiation of an event event - E2E', async ({ pa
 
     // Booking
     await expect(page.locator('#ticket-count')).toHaveText('1');
-    await fillBooking.bookingFormFiller(user.FullName, user.Email[0], user.Phone);
+    await fillBooking.bookingFormFiller(user.FullName, user.Email[13], user.Phone);
 
     // Getting the booking ref
     await expect(page.locator('.booking-ref')).toBeVisible();

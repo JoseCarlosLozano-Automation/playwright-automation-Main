@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { CreateEventPage } from '../../pages/CreateEventPage';
-import { FillBookingForm } from '../../pages/FillBookingForm';
-import { GetSeatsCount } from '../../pages/GetSeatsCount';
-import { EventDetailsValidation } from '../../pages/EventDetailsValidation';
-import { UserData } from '../../test-data/userData';
+import { LoginPage } from '../../../pages/LoginPage';
+import { CreateEventPage } from '../../../pages/CreateEventPage';
+import { FillBookingForm } from '../../../pages/FillBookingForm';
+import { GetSeatsCount } from '../../../pages/GetSeatsCount';
+import { EventDetailsValidation } from '../../../pages/EventDetailsValidation';
+import { UserData } from '../../../test-data/userData';
 
 const url = "https://eventhub.rahulshettyacademy.com";
 

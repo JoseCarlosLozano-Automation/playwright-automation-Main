@@ -1,5 +1,5 @@
 # Playwright E2E and unit tests Automation Framework
-Automation framework qith End-to-end and Unit tests, built with Playwright, designed using industry best practices such as Page Object Model (POM), feature-based test organization, and data-driven testing.
+Automation framework with End-to-end and Unit tests, built with Playwright, designed using industry best practices such as Page Object Model (POM), feature-based test organization, and data-driven testing.
 
 ---
 
@@ -8,6 +8,7 @@ Automation framework qith End-to-end and Unit tests, built with Playwright, desi
 - JavaScript
 - Faker (dynamic data generation)
 - Page Object Model (POM)
+- API validations
 
 ---
 
