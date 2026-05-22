@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/LoginPage';
+import { test, expect, request } from '@playwright/test';
 import { CreateEventPage } from '../../../pages/CreateEventPage';
 import { FillBookingForm } from '../../../pages/FillBookingForm';
 import { GetSeatsCount } from '../../../pages/GetSeatsCount';
@@ -9,28 +8,27 @@ import {EcommerceAPIClient} from '../../../utils/EcommerceAPIClient';
 const user = UserData();
 const url = "https://eventhub.rahulshettyacademy.com";
 
-const loginPayload = {userEmail: user.Email[13], userPassword: user.Password};
-const orderPayload = {orders: [{country: "Mexico", productOrderedId: "6960eac0c941646b7a8b3e68"}]};
-
-let response;
+let authToken;
+const loginPayload = {email: user.Email[13], password: user.Password};
 
 test.beforeAll( async () => {
     const apiContext = await request.newContext();
     const apiUtils = new EcommerceAPIClient(apiContext, loginPayload);
-    response = await apiUtils.createOrder(orderPayload);
+    authToken = await apiUtils.getToken();
 });
 
 
 test('Full creation, booking and valiation of an event event - E2E', async ({ page }) => {
-    const loginPage = new LoginPage(page);
     const createEvent = new CreateEventPage(page);
     const fillBooking = new FillBookingForm(page);
     const getSeats = new GetSeatsCount(page);
 
-    await page.goto(url);
+    // Log in with API and set the token in local storage
+    await page.addInitScript(token => {
+        window.localStorage.setItem('eventhub_token', token);
+    }, authToken);
 
-    // Log in
-    await loginPage.login(user.Email[13], user.Password);
+    await page.goto(url);
     await expect(page.locator('span:has-text("Browse Events")')).toBeVisible();
 
     // Create an event

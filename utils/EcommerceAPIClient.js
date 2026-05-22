@@ -6,9 +6,12 @@ class EcommerceAPIClient {
     }
 
     async getToken() {
-        const loginResponse = await this.apiContext.post("https://api.eventhub.rahulshettyacademy.com/api/auth/login", {
-        data: this.loginPayload
-        });
+        const loginResponse = await this.apiContext.post(
+            "https://api.eventhub.rahulshettyacademy.com/api/auth/login",
+            {
+                data: this.loginPayload
+            }
+        );
 
         const loginResponseJson = await loginResponse.json();
         const token = loginResponseJson.token;
