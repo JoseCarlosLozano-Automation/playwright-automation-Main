@@ -17,8 +17,7 @@ export const UserData = () => {
 
         // Hours between 08:00 and 20:00
         const hour = String(
-            faker.number.int({ min: 8, max: 20 })
-        ).padStart(2, '0');
+            faker.number.int({ min: 8, max: 20 })).padStart(2, '0');
 
         // Minutes in steps of 5
         const minute = String(
