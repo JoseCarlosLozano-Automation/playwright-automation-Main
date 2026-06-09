@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../../pages/LoginPage';
 import { CreateEventPage } from '../../../pages/CreateEventPage';
-import { FillBookingForm } from '../../../pages/FillBookingForm';
-import { GetSeatsCount } from '../../../pages/GetSeatsCount';
 import { EventDetailsValidation } from '../../../pages/EventDetailsValidation';
 import { UserData } from '../../../test-data/userData';
 
@@ -11,8 +9,6 @@ const url = "https://eventhub.rahulshettyacademy.com";
 test('Edit a previously created event - E2E', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const createEvent = new CreateEventPage(page);
-    const fillBooking = new FillBookingForm(page);
-    const getSeats = new GetSeatsCount(page);
     const eventValidation = new EventDetailsValidation(page);
     const user = UserData();
 
