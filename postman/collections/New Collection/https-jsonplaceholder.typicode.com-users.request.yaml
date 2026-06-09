@@ -1,0 +1,48 @@
+$kind: http-request
+name: https://jsonplaceholder.typicode.com/users
+url: https://jsonplaceholder.typicode.com/users
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Jose\",\r
+
+    \    \"email\": \"jose@test.com\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 201\", function () {\r
+
+      \    pm.response.to.have.status(201);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Name is Jose\", function () {\r
+
+      \    const body = pm.response.json();\r
+
+      \r
+
+      \    pm.expect(body.name).to.equal(\"Jose\");\r
+
+      });\r
+
+      \r
+
+      pm.test(\"User has an id\", function () {\r
+
+      \    const body = pm.response.json();\r
+
+      \r
+
+      \    pm.expect(body.id).to.exist;\r
+
+      \    console.log(\"ID:\", body.id);\r
+
+      });"
+    language: text/javascript
+order: 1780978412902
