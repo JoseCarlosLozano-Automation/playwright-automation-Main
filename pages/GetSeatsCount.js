@@ -8,7 +8,8 @@ export class GetSeatsCount {
     }
 
     async seatsCount(eventName){
-        await waitForApi(this.page, '/api/events');
+        const apiResult = await waitForApi(this.page, '/api/events');
+        expect(apiResult).toBe(true);
 
         const myEventCard = this.eventCards.filter({ hasText: eventName });
         await expect(myEventCard).toBeVisible();
