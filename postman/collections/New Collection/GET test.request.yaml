@@ -1,5 +1,4 @@
 $kind: http-request
-name: https://jsonplaceholder.typicode.com/users
 url: https://jsonplaceholder.typicode.com/users
 method: GET
 body:
@@ -106,6 +105,74 @@ scripts:
       \    const body = pm.response.json();\r
 
       \    pm.expect(body.length).to.equal(10);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"IDs are unique\", function () {\r
+
+      \    const users = pm.response.json();\r
+
+      \r
+
+      \    const ids = users.map(user => user.id);\r
+
+      \    const uniqueIds = [...new Set(ids)];\r
+
+      \r
+
+      \    pm.expect(ids.length).to.equal(uniqueIds.length);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Emails are unique\", function () {\r
+
+      \    const users = pm.response.json();\r
+
+      \r
+
+      \    const emails = users.map(user => user.email);\r
+
+      \    const uniqueEmails = [...new Set(emails)];\r
+
+      \r
+
+      \    pm.expect(emails.length).to.equal(uniqueEmails.length);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"All users have a complete structure\", function () {\r
+
+      \    const body = pm.response.json();\r
+
+      \    body.forEach(user => {\r
+
+      \        pm.expect(user).to.have.all.keys(\r
+
+      \            \"id\",\r
+
+      \            \"name\",\r
+
+      \            \"username\",\r
+
+      \            \"email\",\r
+
+      \            \"address\",\r
+
+      \            \"phone\",\r
+
+      \            \"website\",\r
+
+      \            \"company\"\r
+
+      \        );\r
+
+      \    });\r
 
       });"
     language: text/javascript
