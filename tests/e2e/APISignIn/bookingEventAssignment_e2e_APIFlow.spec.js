@@ -1,7 +1,7 @@
 import { test, expect, request } from '@playwright/test';
 import { CreateEventPage } from '../../../pages/CreateEventPage';
 import { FillBookingForm } from '../../../pages/FillBookingForm';
-import { GetSeatsCount } from '../../../pages/GetSeatsCount';
+import { GetSeatsCount } from '../../../helpers/GetSeatsCount';
 import { UserData } from '../../../test-data/userData';
 import {EcommerceAPIClient} from '../../../utils/EcommerceAPIClient';
 
