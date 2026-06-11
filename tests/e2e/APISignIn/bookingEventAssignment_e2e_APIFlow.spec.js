@@ -18,7 +18,7 @@ test.beforeAll( async () => {
 });
 
 
-test.only('Full creation, booking and valiation of an event event - E2E', async ({ page }) => {
+test('Full creation, booking and valiation of an event event - E2E', async ({ page }) => {
     const createEvent = new CreateEventPage(page);
     const fillBooking = new FillBookingForm(page);
     const getSeats = new GetSeatsCount(page);

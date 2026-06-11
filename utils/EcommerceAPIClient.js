@@ -31,9 +31,9 @@ class EcommerceAPIClient {
             }
         });
 
-        const orderResponseJson = await orderResponse.json();
-        const orderId = orderResponseJson.orders[0];
-        response.orderId = orderId;
+        const eventResponseJson = await eventResponse.json();
+        const eventId = eventResponseJson.eventId;
+        response.eventId = eventId;
         return response;
     }
 }

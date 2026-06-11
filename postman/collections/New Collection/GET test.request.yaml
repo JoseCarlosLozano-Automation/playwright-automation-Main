@@ -1,4 +1,5 @@
 $kind: http-request
+name: GET test
 url: https://jsonplaceholder.typicode.com/users
 method: GET
 body:
@@ -15,6 +16,34 @@ scripts:
     code: "pm.test(\"Status code is 200\", function () {\r
 
       \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"First item validation\", function () {\r
+
+      \r
+
+      \    let firstItem = pm.response.json()[0];\r
+
+      \    //console.log(firstItem);\r
+
+      \    pm.expect(firstItem.name).to.equal('Leanne Graham');\r
+
+      \r
+
+      });\r
+
+      \r
+
+      pm.test(\"Sixth item validation\", function () {\r
+
+      \r
+
+      \    pm.expect(pm.response.json()[5].address.city).to.equal('South Christy');\r
+
+      \r
 
       });\r
 
