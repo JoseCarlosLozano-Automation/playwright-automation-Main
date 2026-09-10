@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { FillBookingForm } from '../../pages/FillBookingForm';
-import { GetSeatsCount } from '../../pages/GetSeatsCount';
+import { GetSeatsCount } from '../../helpers/GetSeatsCount';
 import { UserData } from '../../test-data/userData';
 
 const url = "https://eventhub.rahulshettyacademy.com";

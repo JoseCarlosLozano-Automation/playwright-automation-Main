@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../../pages/LoginPage';
 import { FillBookingForm } from '../../../pages/FillBookingForm';
 import { CreateEventPage } from '../../../pages/CreateEventPage';
-import { GetSeatsCount } from '../../../pages/GetSeatsCount';
 import { UserData } from '../../../test-data/userData';
 
 const url = "https://eventhub.rahulshettyacademy.com";
@@ -11,7 +10,6 @@ test('Workshop category search - Results', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const fillBooking = new FillBookingForm(page);
     const createEvent = new CreateEventPage(page);
-    const getSeats = new GetSeatsCount(page);
     const user = UserData();
     const categorySelected = 'Workshop';
 
