@@ -13,7 +13,7 @@ test('Multiple tickets booking are not eligible for refund', async ({ page }) =>
     await page.goto(url);
 
     // Log in
-    await loginPage.login(user.Email[1], user.Password);
+    await loginPage.login(user.Email[14], user.Password);
     await expect(page.locator('span:has-text("Browse Events")')).toBeVisible();
 
     // Book specific event with multiple ticket
